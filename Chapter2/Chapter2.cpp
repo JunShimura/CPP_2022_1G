@@ -4,6 +4,7 @@ using namespace std;
 int main()
 {
 	const int STD_BMI = 22;		// 標準BMI
+	const int meterPerCenti = 100;	//1mで何㎝か
 	double height;  // 身長 
 	double weight; // 体重
 	double bmi;     // BMI
@@ -17,7 +18,7 @@ int main()
 	cin >> weight;
 
 	// 身長をcm単位からｍ単位に変換する
-	height /= 100;
+	height /= meterPerCenti;
 	
 	// 身長と体重からBMIを算出する
 	bmi = weight / height / height;
