@@ -6,6 +6,9 @@ int main() {
     int channel;		// チャンネルの番号
     string stationName;	// テレビ局名
 
+  
+
+
     // キー入力をchannelに格納する
     cout << "チャンネル番号を入力してください：";
     cin >> channel;
@@ -33,6 +36,42 @@ int main() {
        stationName = "割り当てなし";
        break;
     }
+    switch (channel) {
+    case 2:
+    case 3:
+        stationName += "公共放送";
+        break;
+    case 1:
+    case 4:
+    case 5:
+    case 6:
+    case 8:
+        stationName += "民間放送";
+        break;
+    default:
+        stationName = "割り当てなし";
+        break;
+    }
+    switch (channel)
+    {
+    case 1:
+        stationName += "めちゃめちゃ";
+    case 2:
+        stationName += "大好き";
+    default:
+        break;
+    }
+    /*
+    if (channel == 1) {
+        stationName += "めちゃめちゃ大好き";
+    }
+    else if (channel == 2) {
+        stationName += "大好き";
+    }
+    */
+
+
+
 
     /* ifの例
 
