@@ -2,9 +2,7 @@
 #include<iomanip>
 using namespace std;
 
-double GetBmi(double weight, double height) {
-	return weight / height / height;
-}
+double GetBmi(double weight, double height);	//GetBmiメソッドのプロトタイプ
 const int STD_BMI = 22;		// 標準BMI
 int main()
 {

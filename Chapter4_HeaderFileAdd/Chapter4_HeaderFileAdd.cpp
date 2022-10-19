@@ -1,10 +1,8 @@
 ﻿#include <iostream>
 #include<iomanip>
+#include"GetBmi.h"
 using namespace std;
 
-double GetBmi(double weight, double height) {
-	return weight / height / height;
-}
 const int STD_BMI = 22;		// 標準BMI
 int main()
 {
