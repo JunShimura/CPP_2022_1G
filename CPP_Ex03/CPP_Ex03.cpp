@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include<iomanip>
+#include<string>
 #include"getBmi.h"
 #include"getObesity.h"
 using namespace std;
@@ -37,5 +38,23 @@ int main()
 	std::cout << "あなたの標準体重は" << fixed << setprecision(1) << stdWeight << "です。" << endl;
 
 	// 肥満度を出す
-	std::cout << "あなたの肥満度は" << getObesity(bmi) << "です。" << endl;
+	int obesity = getObesity(bmi);
+	string ans;
+	switch(obesity) {
+	case -1:
+		ans = "低体重";
+		break;
+	case 0:
+		ans = "普通体重";
+		break;
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+		ans = "肥満度" + to_string( obesity);
+		break;
+	default:
+		break;
+	}
+	std::cout << "あなたの肥満度は" << ans << "です。" << endl;
 }
