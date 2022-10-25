@@ -1,10 +1,9 @@
 ﻿#include <iostream>
 #include<iomanip>
+#include"getBmi.h"
+#include"getObesity.h"
 using namespace std;
 
-double getBmi(double weight, double height) {
-	return weight / height / height;
-}
 const int STD_BMI = 22;		// 標準BMI
 int main()
 {
@@ -36,4 +35,7 @@ int main()
 
 	// 標準体重を画面に表示する
 	std::cout << "あなたの標準体重は" << fixed << setprecision(1) << stdWeight << "です。" << endl;
+
+	// 肥満度を出す
+	std::cout << "あなたの肥満度は" << getObesity(bmi) << "です。" << endl;
 }

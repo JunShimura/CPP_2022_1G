@@ -2,7 +2,7 @@
 #include<iomanip>
 using namespace std;
 
-double GetBmi(double weight, double height);	//GetBmiメソッドのプロトタイプ
+double getBmi(double weight, double height);	//GetBmiメソッドのプロトタイプ
 const int STD_BMI = 22;		// 標準BMI
 int main()
 {
@@ -23,7 +23,7 @@ int main()
 	height /= meterPerCenti;
 
 	// 身長と体重からBMIを算出する
-	bmi = GetBmi(weight, height);
+	bmi = getBmi(weight, height);
 	//bmi = weight / height / height;
 
 	//　標準体重を計算する
