@@ -40,6 +40,17 @@ int main()
 	// 肥満度を出す
 	int obesity = getObesity(bmi);
 	string ans;
+	string message[] 
+		= {
+			"低体重" ,
+			"普通体重" ,
+			"肥満（1度）" ,
+			"肥満（2度）" ,
+			"肥満（3度）" ,
+			"肥満（4度）" ,
+	};
+	ans = message[obesity + 1];
+	/*
 	switch(obesity) {
 	case -1:
 		ans = "低体重";
@@ -56,5 +67,6 @@ int main()
 	default:
 		break;
 	}
+	*/
 	std::cout << "あなたの肥満度は" << ans << "です。" << endl;
 }
