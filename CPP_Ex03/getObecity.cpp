@@ -1,6 +1,15 @@
+#include<stdlib.h>
 #include"getObesity.h"
 int getObesity(double bmi) {
 	int obesity;
+	const double judgeValue[] = { 18.5,25,30,35,40 };
+	for (obesity=0; obesity < _countof(judgeValue); obesity++) {
+		if (bmi < judgeValue[obesity]) {
+			break;
+		}
+	}
+	return obesity - 1;
+	/*
 	if (bmi < 18.5) {// -1 bmi<18.5‚Ì’á‘Ìd
 		obesity = -1;
 	}
@@ -20,6 +29,5 @@ int getObesity(double bmi) {
 		obesity = 4;
 	}
 	return obesity;
-
-	return 0;
+	*/
 }
