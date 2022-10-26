@@ -51,7 +51,7 @@ int main()
 	case 2:
 	case 3:
 	case 4:
-		ans = "肥満度" + to_string( obesity);
+		ans = "肥満(" + to_string( obesity)+"度)";
 		break;
 	default:
 		break;
