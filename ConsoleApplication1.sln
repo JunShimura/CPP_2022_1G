@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Chapter4_TextSample", "chap
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointerSample", "PointerSample\PointerSample.vcxproj", "{C53138E3-9C5F-473E-8914-3952D0C9BFB1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Struct", "ConsoleApplication1\Struct\Struct.vcxproj", "{11058BDB-A7A3-4511-9791-13FA233413FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,18 @@ Global
 		{C53138E3-9C5F-473E-8914-3952D0C9BFB1}.Release|x64.Build.0 = Release|x64
 		{C53138E3-9C5F-473E-8914-3952D0C9BFB1}.Release|x86.ActiveCfg = Release|Win32
 		{C53138E3-9C5F-473E-8914-3952D0C9BFB1}.Release|x86.Build.0 = Release|Win32
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|Any CPU.Build.0 = Debug|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|x64.ActiveCfg = Debug|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|x64.Build.0 = Debug|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Debug|x86.Build.0 = Debug|Win32
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|Any CPU.ActiveCfg = Release|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|Any CPU.Build.0 = Release|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|x64.ActiveCfg = Release|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|x64.Build.0 = Release|x64
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|x86.ActiveCfg = Release|Win32
+		{11058BDB-A7A3-4511-9791-13FA233413FD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

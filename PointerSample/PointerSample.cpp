@@ -20,8 +20,18 @@ int main()
 	std::cout << "a[1]=" << a[1] << std::endl;
 	std::cout << "&a[1]=" << &a[1] << std::endl;
 	std::cout << "sizeof(a[1])=" << sizeof(a[1]) << std::endl;
-	std::cout << "sizeof(c[0])=" << sizeof(c[0]) << std::endl;
+
+	std::cout << "c[0]=" << c[0] << std::endl;
+	std::cout << "&c[0]=" << &c[0] << std::endl;
+	std::cout << "sizeof(c[0])=" << sizeof(a[0]) << std::endl;
+	std::cout << "c[1]=" << c[1] << std::endl;
+	std::cout << "&c[1]=" << &c[1] << std::endl;
 	std::cout << "sizeof(c[1])=" << sizeof(c[1]) << std::endl;
+
+	std::cout << "p1=" << p1 << std::endl;
+	std::cout << "*p1=" << *p1 << std::endl;
+	std::cout << "p2=" << p2 << std::endl;
+	std::cout << "*p2=" << *p2 << std::endl;
 	std::cout << "p3=" << p3 << std::endl;
 	std::cout << "*p3=" << *p3 << std::endl;
 	std::cout << "p4=" << p4 << std::endl;
