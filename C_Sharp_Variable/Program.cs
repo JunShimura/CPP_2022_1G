@@ -4,14 +4,9 @@
     {
         static void Main(string[] args)
         {
-            int i, j, k;
-            double height;  // 身長 
-            double weight; // 体重
-            double bmi;     // BMI
-
-            //std::cout << "Hello World!\n";
-
-            Console.WriteLine("Hello, World!");
+            int[] a = new int[10];
+            int x = -1;
+            Console.WriteLine(a[x]);
         }
     }
 }
