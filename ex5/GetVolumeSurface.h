@@ -1,4 +1,5 @@
 #pragma once
+#include"PackSize.h"
 struct BOX {	//箱の定義
 	double x;	//幅
 	double y;	//高さ
@@ -12,4 +13,6 @@ void getVolumeSurface(BOX* box);
 bool isSendable( 
 	BOX* box	//BOXのポインタ
 	);
+
+
 

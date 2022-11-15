@@ -23,7 +23,6 @@ int main()
 		else {
 			cout << "‘î‹}•Ö‚Å‚Í‘—‚ê‚Ü‚¹‚ñ" << endl;
 		}
-
 	}
 	return 0;
 }
