@@ -7,6 +7,14 @@ struct BOX {	//箱の定義
 	double z;	//奥行
 	double volume;	//体積
 	double surface; //表面積
+	void getVolumeSurface(double* volume, double* surface) {
+		*volume = x * y * z;
+		*surface = 2 * (x * y + x * z + y * z);
+		return;
+	}
+};
+struct BOX2 :BOX {
+
 };
 
 void getVolumeSurface(double x, double y, double z, double* volume, double* surface) {
@@ -33,6 +41,7 @@ int main()
 		//getVolumeSurface(boxes[i].x, boxes[i].y, boxes[i].z,
 		//	&boxes[i].volume, &boxes[i].surface);
 		getVolumeSurface(&boxes[i]);
+		boxes[i].getVolumeSurface(&boxes[i].volume, &boxes[i].surface);
 		cout << "体積は" << boxes[i].volume << endl;
 		cout << "表面積は" << boxes[i].surface << endl;
 	}

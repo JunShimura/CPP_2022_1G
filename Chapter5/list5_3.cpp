@@ -7,8 +7,15 @@ int main() {
   string s1, s2, s3;
 
   // 文字列オブジェクトに文字列を格納する
-  s1 = "apple";
-  s2 = "banana";
+  
+  //配列で宣言した場合
+  //s1 = "apple";
+  //s2 = "banana";
+  //char s2c[] = "banana";
+  //char s1c[] = "apple";
+  //if (s1c > s2c) {
+  //    cout << "s1cが大きい。" << endl;
+  //}
 
   // 文字列を比較する
   if (s1 > s2) {

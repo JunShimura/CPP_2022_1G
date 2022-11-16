@@ -5,6 +5,7 @@ using namespace std;
 int main() {
   int ans;	// 文字列の長さ
   string s;	// 文字列オブジェクト
+  char str[] = "hello, world";
 
   // 文字列オブジェクトに文字列を格納する
   s = "hello, world";
