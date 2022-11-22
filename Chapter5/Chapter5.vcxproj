@@ -22,8 +22,7 @@
     <ClInclude Include="HealthChecker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HealthChecker.cpp" />
-    <ClCompile Include="list5_10.cpp" />
+    <ClCompile Include="list5_12.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

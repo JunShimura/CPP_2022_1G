@@ -14,7 +14,7 @@ struct BOX {	//箱の定義
 	}
 };
 struct BOX2 :BOX {
-
+	string name;
 };
 
 void getVolumeSurface(double x, double y, double z, double* volume, double* surface) {
