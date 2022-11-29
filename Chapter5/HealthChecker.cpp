@@ -27,6 +27,10 @@ HealthChecker::HealthChecker(string name, double height, double weight) {
   this->bmi = 0;
 }
 
+// デストラクタの実装
+HealthChecker::~HealthChecker() {
+    cout <<this->name<< ":Called Destructer";
+}
 // 氏名を返すメンバ関数の実装
 string HealthChecker::getName() {
   return this->name;
