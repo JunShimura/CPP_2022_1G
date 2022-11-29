@@ -24,6 +24,7 @@
     <ProjectGuid>{76839042-484c-49f1-ac5f-eb0ff637570b}</ProjectGuid>
     <RootNamespace>ex04</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CPP_ex04</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
