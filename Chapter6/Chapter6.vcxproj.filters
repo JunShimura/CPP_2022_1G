@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HealthChecker.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClCompile Include="Account.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="list6_7.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HealthChecker.cpp">
+    <ClInclude Include="Account.h">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="list5_19.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
