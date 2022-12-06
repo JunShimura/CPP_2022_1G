@@ -11,4 +11,5 @@ class HealthChecker {
     double getBmi();			// BMIを返すメンバ関数
     string getName();			// 氏名を返すメンバ関数
     HealthChecker(string name, double height, double weight); // コンストラクタ
+    ~HealthChecker();
 };
