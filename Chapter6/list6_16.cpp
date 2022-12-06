@@ -7,9 +7,13 @@ class Animal {
   protected:
     string name;		// 名前を保持するメンバ変数
   public:
-    virtual void speak() = 0;	// 名前と鳴き声を表示するメンバ関数
+    virtual void speak();	// 名前と鳴き声を表示するメンバ関数
     Animal(string name);	// コンストラクタ
 };
+void Animal::speak() {
+    cout << this->name << "：HelloWorld" << endl;
+}
+
 
 // 犬を表すクラスの定義
 class Dog : public Animal {
@@ -57,11 +61,21 @@ void sub(Animal *p) {
 int main() {
   // 犬と猫のインスタンスを生成する
   Dog pochi("ポチ");
+  Dog jhon("じょん");
   Cat tama("タマ");
+  Cat tom("とむ");
+  Animal shimura("しむら");
 
   // 犬と猫を鳴かせる
   sub(&pochi);
   sub(&tama);
+
+  // まとめて処理する
+  Animal* animals[] = { &pochi,&tama,&jhon,&tom,&shimura };
+  for (int i = 0; i < _countof(animals); i++) {
+      animals[i]->speak();
+  }
+
 
   return 0;
 }

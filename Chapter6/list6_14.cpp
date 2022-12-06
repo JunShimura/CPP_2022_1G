@@ -13,6 +13,7 @@ class GenderCountBoard {
     void upFemaleCounter();	// 女性用カウンタをアップするメンバ関数
     int getMaleCounter();	// 男性用カウンタの値を返すメンバ関数
     int getFemaleCounter();	// 女性用カウンタの値を返すメンバ関数
+    int getAllCounter();    //  カウンタの合計値を返すメンバ関数
     GenderCountBoard();	// コンストラクタ
 };
 
@@ -36,6 +37,11 @@ int GenderCountBoard::getFemaleCounter() {
   return this->female.getVal();
 }
 
+// カウンタの合計値を返すメンバ関数の実装
+int GenderCountBoard::getAllCounter() {
+    return this->male.getVal()+this->female.getVal();
+}
+
 // コンストラクタの実装
 GenderCountBoard::GenderCountBoard() {
 }
@@ -57,6 +63,7 @@ int main() {
   // カウンタの値を表示する
   cout << "男性用カウンタの値 = " << gcb.getMaleCounter() << endl;
   cout << "女性用カウンタの値 = " << gcb.getFemaleCounter() << endl;
+  cout << "カウンタの合計値 = " << gcb.getAllCounter() << endl;
 
   return 0;
 }

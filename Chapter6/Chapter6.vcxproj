@@ -20,10 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
-    <ClCompile Include="list6_7.cpp" />
+    <ClCompile Include="AccountEx.cpp" />
+    <ClCompile Include="Counter.cpp" />
+    <ClCompile Include="CounterEx.cpp" />
+    <ClCompile Include="list6_16.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountEx.h" />
+    <ClInclude Include="Counter.h" />
+    <ClInclude Include="CounterEx.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
