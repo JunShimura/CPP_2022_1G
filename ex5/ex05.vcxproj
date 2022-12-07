@@ -20,11 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPex05.cpp" />
-    <ClCompile Include="GetVolumeSurface.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GetVolumeSurface.h" />
-    <ClInclude Include="PackSize.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

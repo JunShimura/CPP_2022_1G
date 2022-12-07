@@ -1,28 +1,41 @@
 #include <iostream>
 using namespace std;
-#include "getVolumeSurface.h"
+
+class Box {	//箱の定義
+private:
+	float width;	//幅
+	float height;	//高さ
+	float depth;	//奥行
+public:
+	Box(
+		float width,		//幅
+		float height,	//高さ
+		float depth)	//奥行
+	{
+		this->width = width;
+		this->height = height;
+		this->depth = depth;
+	}
+	float getVolume() {
+		return this->width * this->height * this->depth;
+	}
+	float getSurface() {
+		return (this->width * this->height + this->height * this->depth + this->depth * this->width) * 2;
+	}
+};
 
 int main()
 {
-	const int BoxCount = 3;
-	BOX boxes[BoxCount];
-	BOX testBox = {2,10,30};
-	for (int i = 0; i < BoxCount; i++) {
-		cout << "幅を入力：";
-		cin >> boxes[i].x;
-		cout << "高さを入力：";
-		cin >> boxes[i].y;
-		cout << "奥行を入力：";
-		cin >> boxes[i].z;
-		getVolumeSurface(&boxes[i]);
-		cout << "体積は" << boxes[i].volume << endl;
-		cout << "表面積は" << boxes[i].surface << endl;
-		if (isSendable(&boxes[i])) {
-			cout << "宅急便サイズは" << boxes[i].packSize << endl;
-		}
-		else {
-			cout << "宅急便では送れません" << endl;
-		}
-	}
+	Box testBox = { 2,10,30 };
+	float x, y, z;
+	cout << "幅を入力：";
+	cin >> x;
+	cout << "高さを入力：";
+	cin >> y;
+	cout << "奥行を入力：";
+	cin >> z;
+	Box* box = new Box(x, y, z);
+	cout << "体積は" << box->getVolume() << endl;
+	cout << "表面積は" << box->getSurface() << endl;
 	return 0;
 }
