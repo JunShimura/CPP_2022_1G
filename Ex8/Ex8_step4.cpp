@@ -150,7 +150,7 @@ int GetYupackSize(double length) {
 class Courier
 {
 private:
-	int* packSizes;
+	const int* packSizes;
 	int length;
 public:
 	Courier(int packSizes[], int length) {
@@ -160,7 +160,7 @@ public:
 	int GetPackSize(double length) {
 		return GetPackSize(length, this->packSizes, this->length);
 	}
-	static int GetPackSize(double length, int packSizes[], int packSizesLength) {
+	static int GetPackSize(double length, const int packSizes[], int packSizesLength) {
 		int packSize = 0;
 		//送るサイズを求める
 		for (int i = 0; i < packSizesLength; i++) {
@@ -176,6 +176,12 @@ public:
 
 int main()
 {
+	int kuronekoPackSizes[] = { 60,80,100,120,140,160,180,200 };
+	int youpackPackSizes[] = { 60,80,100,120,140,160,170 };
+
+	Courier* courierKuroneko = new Courier(kuronekoPackSizes, (int)_countof(kuronekoPackSizes));
+	Courier* courierYoupack = new Courier(youpackPackSizes, (int)_countof(youpackPackSizes));
+
 	Box box{ 80.0, 10, 0.1 };
 	Cylinder cylinder{ 30, 10 };
 	Cone cone{ 30, 10 };
@@ -190,7 +196,7 @@ int main()
 	// 箱の宅急便のサイズを求める
 	length = box.GetWidth() + box.GetHeight() + box.GetDepth();
 	//クロネコで箱を送る
-	packSize = GetKuronekoSize(length);
+	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "クロネコでの箱のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -198,7 +204,7 @@ int main()
 		cout << "この箱はクロネコ宅急便では送れません" << endl;
 	}
 	//ゆうパックで箱を送る
-	packSize = GetYupackSize(length);
+	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "ゆうパックでの箱のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -209,7 +215,7 @@ int main()
 	// 円柱の宅急便のサイズを求める
 	length = cylinder.GetRadius() * 4 + cylinder.GetHeight();
 	//クロネコで円柱を送る
-	packSize = GetKuronekoSize(length);
+	packSize =  courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "クロネコでの円柱のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -217,7 +223,7 @@ int main()
 		cout << "この円柱はクロネコ宅急便では送れません" << endl;
 	}
 	//ゆうパックで円柱を送る
-	packSize = GetYupackSize(length);
+	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "ゆうパックでの円柱のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -228,7 +234,7 @@ int main()
 	// 円錐の宅急便のサイズを求める
 	length = cone.GetRadius() * 4 + cone.GetHeight();
 	//クロネコで円錐を送る
-	packSize = GetKuronekoSize(length);
+	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "クロネコでの円錐のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -236,7 +242,7 @@ int main()
 		cout << "この円錐はクロネコ宅急便では送れません" << endl;
 	}
 	//ゆうパックで円錐を送る
-	packSize = GetYupackSize(length);
+	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "ゆうパックでの円錐のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -247,7 +253,7 @@ int main()
 	// 球の宅急便のサイズを求める
 	length = sphere.GetRadius() * 6;
 	//クロネコで球を送る
-	packSize = GetKuronekoSize(length);
+	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "クロネコでの球のサイズは" << packSize << "サイズです" << endl;
 	}
@@ -255,7 +261,7 @@ int main()
 		cout << "この球はクロネコ宅急便では送れません" << endl;
 	}
 	//ゆうパックで箱を送る
-	packSize = GetYupackSize(length);
+	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
 		cout << "ゆうパックでの球のサイズは" << packSize << "サイズです" << endl;
 	}
