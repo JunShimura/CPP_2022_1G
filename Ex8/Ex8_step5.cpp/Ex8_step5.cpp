@@ -1,20 +1,21 @@
-Ôªø#define _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <iostream>
 #include<cstdlib>
 using namespace std;
 
 /// <summary>
-/// Áâ©‰Ωì„ÅÆÂÆöÁæ©
+/// ï®ëÃÇÃíËã`
 /// </summary>
 class Solid {
 public:
 	virtual double GetVolume() = 0;
 	virtual double GetSurface() = 0;
+	virtual double GetPackLength() = 0;
 };
 
 /// <summary>
-/// ÁÆ±Âûã
+/// î†å^
 /// </summary>
 class Box :public Solid {
 private:
@@ -24,9 +25,9 @@ private:
 
 public:
 	Box(
-		double width,   //ÂπÖ
-		double height,  //È´ò„Åï
-		double depth    //Â••Ë°å
+		double width,   //ïù
+		double height,  //çÇÇ≥
+		double depth    //âúçs
 	) :Solid() {
 		this->width = width;
 		this->height = height;
@@ -38,6 +39,9 @@ public:
 	double GetSurface() {
 		return (width * height + height * depth + depth * width) * 2;
 	}
+	double GetPackLength() {
+		return width + height + depth;
+	}
 	double GetWidth() {
 		return this->width;
 	}
@@ -47,6 +51,7 @@ public:
 	double GetDepth() {
 		return this->depth;
 	}
+
 };
 
 class Cylinder :public Solid {
@@ -55,8 +60,8 @@ private:
 	double height;
 public:
 	Cylinder(
-		double radius,  //„ÄÄÂ∫ïÈù¢„ÅÆÂçäÂæÑ
-		double height   // È´ò„Åï
+		double radius,  //Å@íÍñ ÇÃîºåa
+		double height   // çÇÇ≥
 	) :Solid() {
 		this->radius = radius;
 		this->height = height;
@@ -66,6 +71,9 @@ public:
 	}
 	double GetSurface() {
 		return radius * M_PI * 2 * (radius + height);
+	}
+	double GetPackLength() {
+		return radius * 4 + height;
 	}
 	double GetRadius() {
 		return this->radius;
@@ -81,8 +89,8 @@ private:
 	double height;
 public:
 	Cone(
-		double radius,  //„ÄÄÂ∫ïÈù¢„ÅÆÂçäÂæÑ
-		double height   // È´ò„Åï
+		double radius,  //Å@íÍñ ÇÃîºåa
+		double height   // çÇÇ≥
 	) :Solid() {
 		this->radius = radius;
 		this->height = height;
@@ -92,6 +100,9 @@ public:
 	}
 	double GetSurface() {
 		return M_PI * radius * (radius + sqrt(radius * radius + height * height));
+	}
+	double GetPackLength() {
+		return radius * 4 + height;
 	}
 	double GetRadius() {
 		return this->radius;
@@ -106,7 +117,7 @@ private:
 	double radius;
 public:
 	Sphere(
-		double radius  //„ÄÄÂ∫ïÈù¢„ÅÆÂçäÂæÑ
+		double radius  //Å@íÍñ ÇÃîºåa
 	) :Solid() {
 		this->radius = radius;
 	}
@@ -116,19 +127,22 @@ public:
 	double GetSurface() {
 		return M_PI * radius * radius * 4;
 	}
+	double GetPackLength() {
+		return radius * 6;
+	}
 	double GetRadius() {
 		return this->radius;
 	}
 };
 
 void DisplayVolumeSurface(Solid* solid) {
-	cout << "‰ΩìÁ©ç=" << solid->GetVolume() << endl;
-	cout << "Ë°®Èù¢Á©ç=" << solid->GetSurface() << endl;
+	cout << "ëÃêœ=" << solid->GetVolume() << endl;
+	cout << "ï\ñ êœ=" << solid->GetSurface() << endl;
 }
 
 //int GetPackSize(double length, int packSizes[], int packSizesLength) {
 //	int packSize = 0;
-//	//ÈÄÅ„Çã„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
+//	//ëóÇÈÉTÉCÉYÇãÅÇﬂÇÈ
 //	for (int i = 0; i < packSizesLength; i++) {
 //		if (length <= packSizes[i]) {
 //			packSize = packSizes[i];
@@ -150,12 +164,12 @@ void DisplayVolumeSurface(Solid* solid) {
 class Courier
 {
 private:
-	const int* packSizes;	//„Çµ„Ç§„Ç∫Ë°®„ÅÆ„Ç¢„Éâ„É¨„Çπ
-	int length;					//„Çµ„Ç§„Ç∫Ë°®„ÅÆË¶ÅÁ¥†Êï∞
+	const int* packSizes;	//ÉTÉCÉYï\ÇÃÉAÉhÉåÉX
+	int length;					//ÉTÉCÉYï\ÇÃóvëfêî
 public:
 	Courier(
-		int packSizes[],	//„Çµ„Ç§„Ç∫Ë°®„ÅÆ„Ç¢„Éâ„É¨„Çπ
-		int length			//„Çµ„Ç§„Ç∫Ë°®„ÅÆË¶ÅÁ¥†Êï∞
+		int packSizes[],	//ÉTÉCÉYï\ÇÃÉAÉhÉåÉX
+		int length			//ÉTÉCÉYï\ÇÃóvëfêî
 	) {
 		this->packSizes = packSizes;
 		this->length = length;
@@ -165,7 +179,7 @@ public:
 	}
 	static int GetPackSize(double length, const int packSizes[], int packSizesLength) {
 		int packSize = 0;
-		//ÈÄÅ„Çã„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
+		//ëóÇÈÉTÉCÉYÇãÅÇﬂÇÈ
 		for (int i = 0; i < packSizesLength; i++) {
 			if (length <= packSizes[i]) {
 				packSize = packSizes[i];
@@ -193,82 +207,83 @@ int main()
 	Solid* solid[N_TABLE] = { &box, &cylinder,&cone,&sphere };
 	for (int i = 0; i < N_TABLE; i++) {
 		DisplayVolumeSurface(solid[i]);
+		courierKuroneko->GetPackSize(solid[i]->GetPackLength());
 	}
 	double length;
 	int packSize;
-	// ÁÆ±„ÅÆÂÆÖÊÄ•‰æø„ÅÆ„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
-	length = box.GetWidth() + box.GetHeight() + box.GetDepth();
-	//„ÇØ„É≠„Éç„Ç≥„ÅßÁÆ±„ÇíÈÄÅ„Çã
+	// î†ÇÃëÓã}ï÷ÇÃÉTÉCÉYÇãÅÇﬂÇÈ
+	length = box.GetPackLength();
+	//ÉNÉçÉlÉRÇ≈î†ÇëóÇÈ
 	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇØ„É≠„Éç„Ç≥„Åß„ÅÆÁÆ±„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "ÉNÉçÉlÉRÇ≈ÇÃî†ÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÁÆ±„ÅØ„ÇØ„É≠„Éç„Ç≥ÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃî†ÇÕÉNÉçÉlÉRëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
-	//„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„ÅßÁÆ±„ÇíÈÄÅ„Çã
+	//Ç‰Ç§ÉpÉbÉNÇ≈î†ÇëóÇÈ
 	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„Åß„ÅÆÁÆ±„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "Ç‰Ç§ÉpÉbÉNÇ≈ÇÃî†ÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÁÆ±„ÅØ„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃî†ÇÕÇ‰Ç§ÉpÉbÉNëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
 
-	// ÂÜÜÊü±„ÅÆÂÆÖÊÄ•‰æø„ÅÆ„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
-	length = cylinder.GetRadius() * 4 + cylinder.GetHeight();
-	//„ÇØ„É≠„Éç„Ç≥„ÅßÂÜÜÊü±„ÇíÈÄÅ„Çã
-	packSize =  courierKuroneko->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "„ÇØ„É≠„Éç„Ç≥„Åß„ÅÆÂÜÜÊü±„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
-	}
-	else {
-		cout << "„Åì„ÅÆÂÜÜÊü±„ÅØ„ÇØ„É≠„Éç„Ç≥ÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
-	}
-	//„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„ÅßÂÜÜÊü±„ÇíÈÄÅ„Çã
-	packSize = courierYoupack->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„Åß„ÅÆÂÜÜÊü±„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
-	}
-	else {
-		cout << "„Åì„ÅÆÂÜÜÊü±„ÅØ„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
-	}
-
-	// ÂÜÜÈåê„ÅÆÂÆÖÊÄ•‰æø„ÅÆ„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
-	length = cone.GetRadius() * 4 + cone.GetHeight();
-	//„ÇØ„É≠„Éç„Ç≥„ÅßÂÜÜÈåê„ÇíÈÄÅ„Çã
+	// â~íåÇÃëÓã}ï÷ÇÃÉTÉCÉYÇãÅÇﬂÇÈ
+	length = cylinder.GetPackLength();
+	//ÉNÉçÉlÉRÇ≈â~íåÇëóÇÈ
 	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇØ„É≠„Éç„Ç≥„Åß„ÅÆÂÜÜÈåê„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "ÉNÉçÉlÉRÇ≈ÇÃâ~íåÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÂÜÜÈåê„ÅØ„ÇØ„É≠„Éç„Ç≥ÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃâ~íåÇÕÉNÉçÉlÉRëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
-	//„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„ÅßÂÜÜÈåê„ÇíÈÄÅ„Çã
+	//Ç‰Ç§ÉpÉbÉNÇ≈â~íåÇëóÇÈ
 	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„Åß„ÅÆÂÜÜÈåê„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "Ç‰Ç§ÉpÉbÉNÇ≈ÇÃâ~íåÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÂÜÜÈåê„ÅØ„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃâ~íåÇÕÇ‰Ç§ÉpÉbÉNëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
 
-	// ÁêÉ„ÅÆÂÆÖÊÄ•‰æø„ÅÆ„Çµ„Ç§„Ç∫„ÇíÊ±Ç„ÇÅ„Çã
-	length = sphere.GetRadius() * 6;
-	//„ÇØ„É≠„Éç„Ç≥„ÅßÁêÉ„ÇíÈÄÅ„Çã
+	// â~êçÇÃëÓã}ï÷ÇÃÉTÉCÉYÇãÅÇﬂÇÈ
+	length = cone.GetPackLength();
+	//ÉNÉçÉlÉRÇ≈â~êçÇëóÇÈ
 	packSize = courierKuroneko->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇØ„É≠„Éç„Ç≥„Åß„ÅÆÁêÉ„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "ÉNÉçÉlÉRÇ≈ÇÃâ~êçÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÁêÉ„ÅØ„ÇØ„É≠„Éç„Ç≥ÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃâ~êçÇÕÉNÉçÉlÉRëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
-	//„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„ÅßÁÆ±„ÇíÈÄÅ„Çã
+	//Ç‰Ç§ÉpÉbÉNÇ≈â~êçÇëóÇÈ
 	packSize = courierYoupack->GetPackSize(length);
 	if (packSize != 0) {
-		cout << "„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØ„Åß„ÅÆÁêÉ„ÅÆ„Çµ„Ç§„Ç∫„ÅØ" << packSize << "„Çµ„Ç§„Ç∫„Åß„Åô" << endl;
+		cout << "Ç‰Ç§ÉpÉbÉNÇ≈ÇÃâ~êçÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
 	}
 	else {
-		cout << "„Åì„ÅÆÁêÉ„ÅØ„ÇÜ„ÅÜ„Éë„ÉÉ„ÇØÂÆÖÊÄ•‰æø„Åß„ÅØÈÄÅ„Çå„Åæ„Åõ„Çì" << endl;
+		cout << "Ç±ÇÃâ~êçÇÕÇ‰Ç§ÉpÉbÉNëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
+	}
+
+	// ãÖÇÃëÓã}ï÷ÇÃÉTÉCÉYÇãÅÇﬂÇÈ
+	length = sphere.GetPackLength();
+	//ÉNÉçÉlÉRÇ≈ãÖÇëóÇÈ
+	packSize = courierKuroneko->GetPackSize(length);
+	if (packSize != 0) {
+		cout << "ÉNÉçÉlÉRÇ≈ÇÃãÖÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
+	}
+	else {
+		cout << "Ç±ÇÃãÖÇÕÉNÉçÉlÉRëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
+	}
+	//Ç‰Ç§ÉpÉbÉNÇ≈î†ÇëóÇÈ
+	packSize = courierYoupack->GetPackSize(length);
+	if (packSize != 0) {
+		cout << "Ç‰Ç§ÉpÉbÉNÇ≈ÇÃãÖÇÃÉTÉCÉYÇÕ" << packSize << "ÉTÉCÉYÇ≈Ç∑" << endl;
+	}
+	else {
+		cout << "Ç±ÇÃãÖÇÕÇ‰Ç§ÉpÉbÉNëÓã}ï÷Ç≈ÇÕëóÇÍÇ‹ÇπÇÒ" << endl;
 	}
 }

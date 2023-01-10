@@ -232,7 +232,7 @@ int main()
 	else {
 		cout << "この球はクロネコ宅急便では送れません" << endl;
 	}
-	//ゆうパックで箱を送る
+	//ゆうパックで球を送る
 	packSize = GetYupackSize(length);
 	if (packSize != 0) {
 		cout << "ゆうパックでの球のサイズは" << packSize << "サイズです" << endl;
