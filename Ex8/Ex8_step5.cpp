@@ -11,7 +11,7 @@ class Solid {
 public:
 	virtual double GetVolume() = 0;
 	virtual double GetSurface() = 0;
-	virtual double GetPackLength() = 0;
+	virtual double GetPackLength() = 0;	//step5で追加
 };
 
 /// <summary>
@@ -22,7 +22,6 @@ private:
 	double width;
 	double height;
 	double depth;
-
 public:
 	Box(
 		double width,   //幅
@@ -51,7 +50,6 @@ public:
 	double GetDepth() {
 		return this->depth;
 	}
-
 };
 
 class Cylinder :public Solid {
@@ -140,27 +138,6 @@ void DisplayVolumeSurface(Solid* solid) {
 	cout << "表面積=" << solid->GetSurface() << endl;
 }
 
-//int GetPackSize(double length, int packSizes[], int packSizesLength) {
-//	int packSize = 0;
-//	//送るサイズを求める
-//	for (int i = 0; i < packSizesLength; i++) {
-//		if (length <= packSizes[i]) {
-//			packSize = packSizes[i];
-//			break;
-//		}
-//	}
-//	return packSize;
-//}
-//
-//int GetKuronekoSize(double length) {
-//	int packSizes[] = { 60,80,100,120,140,160,180,200 };
-//	return GetPackSize(length, packSizes, _countof(packSizes));
-//}
-//int GetYupackSize(double length) {
-//	int  packSizes[] = { 60,80,100,120,140,160,170 };
-//	return GetPackSize(length, packSizes, _countof(packSizes));
-//}
-
 class Courier
 {
 private:
@@ -189,6 +166,19 @@ public:
 		return packSize;
 	}
 };
+class Package {	//荷物
+private:
+	Courier* courier=nullptr;	// 宅配業者
+	Solid* solid=nullptr;		// 形
+public:
+	Package(Courier* courier, Solid* solid) {
+		this->courier=courier;
+		this->solid=solid;
+	}
+	int GetPackSize() {
+		return courier->GetPackSize(solid->GetPackLength());
+	}
+};
 
 
 int main()
@@ -203,87 +193,38 @@ int main()
 	Cylinder cylinder{ 30, 10 };
 	Cone cone{ 30, 10 };
 	Sphere sphere{ 30 };
+	
+	Package package0{ courierKuroneko,&box };
+	Package package1{ courierYoupack,&box };
+	Package package2{ courierKuroneko,new Box(20,5,30)};
+
+	Package* packages[] = {&package0,&package1,&package2};
+	for (int i = 0; i < _countof(packages); i++) {
+		int packSize = packages[i]->GetPackSize();
+			cout << "packageの"<<"i"<<"番目は" << packSize << "サイズです" << endl;
+	}
+
 	const int N_TABLE = 4;
 	Solid* solid[N_TABLE] = { &box, &cylinder,&cone,&sphere };
 	for (int i = 0; i < N_TABLE; i++) {
 		DisplayVolumeSurface(solid[i]);
-		courierKuroneko->GetPackSize(solid[i]->GetPackLength());
-	}
-	double length;
-	int packSize;
-	// 箱の宅急便のサイズを求める
-	length = box.GetPackLength();
-	//クロネコで箱を送る
-	packSize = courierKuroneko->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "クロネコでの箱のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この箱はクロネコ宅急便では送れません" << endl;
-	}
-	//ゆうパックで箱を送る
-	packSize = courierYoupack->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "ゆうパックでの箱のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この箱はゆうパック宅急便では送れません" << endl;
-	}
-
-	// 円柱の宅急便のサイズを求める
-	length = cylinder.GetPackLength();
-	//クロネコで円柱を送る
-	packSize = courierKuroneko->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "クロネコでの円柱のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この円柱はクロネコ宅急便では送れません" << endl;
-	}
-	//ゆうパックで円柱を送る
-	packSize = courierYoupack->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "ゆうパックでの円柱のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この円柱はゆうパック宅急便では送れません" << endl;
-	}
-
-	// 円錐の宅急便のサイズを求める
-	length = cone.GetPackLength();
-	//クロネコで円錐を送る
-	packSize = courierKuroneko->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "クロネコでの円錐のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この円錐はクロネコ宅急便では送れません" << endl;
-	}
-	//ゆうパックで円錐を送る
-	packSize = courierYoupack->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "ゆうパックでの円錐のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この円錐はゆうパック宅急便では送れません" << endl;
-	}
-
-	// 球の宅急便のサイズを求める
-	length = sphere.GetPackLength();
-	//クロネコで球を送る
-	packSize = courierKuroneko->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "クロネコでの球のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この球はクロネコ宅急便では送れません" << endl;
-	}
-	//ゆうパックで箱を送る
-	packSize = courierYoupack->GetPackSize(length);
-	if (packSize != 0) {
-		cout << "ゆうパックでの球のサイズは" << packSize << "サイズです" << endl;
-	}
-	else {
-		cout << "この球はゆうパック宅急便では送れません" << endl;
+		//クロネコを送る
+		double packSize = courierKuroneko->GetPackSize(solid[i]->GetPackLength());
+		cout << "クロネコでの" << i << "番目の荷物は";
+		if (packSize != 0) {
+			cout << packSize << "サイズです" << endl;
+		}
+		else {
+			cout << "送れません" << endl;
+		}
+		//ゆうパックで送る
+		packSize = courierYoupack->GetPackSize(solid[i]->GetPackLength());
+		cout << "ゆうパックでの" << i << "番目の荷物は";
+		if (packSize != 0) {
+			cout << packSize << "サイズです" << endl;
+		}
+		else {
+			cout << "送れません" << endl;
+		}
 	}
 }
