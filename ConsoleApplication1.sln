@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_EX8_hint", "CPP_EX8_hin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex8", "Ex8\Ex8.vcxproj", "{C491723F-E7B4-424A-862E-E382BEE581C6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Chapter8", "Chapter8\Chapter8.vcxproj", "{9AEE8D15-AF4C-490B-8078-1307C748E822}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -377,6 +379,18 @@ Global
 		{C491723F-E7B4-424A-862E-E382BEE581C6}.Release|x64.Build.0 = Release|x64
 		{C491723F-E7B4-424A-862E-E382BEE581C6}.Release|x86.ActiveCfg = Release|Win32
 		{C491723F-E7B4-424A-862E-E382BEE581C6}.Release|x86.Build.0 = Release|Win32
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|Any CPU.Build.0 = Debug|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|x64.ActiveCfg = Debug|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|x64.Build.0 = Debug|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|x86.ActiveCfg = Debug|Win32
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Debug|x86.Build.0 = Debug|Win32
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|Any CPU.ActiveCfg = Release|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|Any CPU.Build.0 = Release|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|x64.ActiveCfg = Release|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|x64.Build.0 = Release|x64
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|x86.ActiveCfg = Release|Win32
+		{9AEE8D15-AF4C-490B-8078-1307C748E822}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
