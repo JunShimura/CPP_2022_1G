@@ -4,11 +4,15 @@
     {
         static void Main(string[] args)
         {
-            TestClass testClass01= new TestClass(123);
-            TestClass testClass02 = testClass01;
-            Console.WriteLine($"{testClass01.x},{testClass02.x}");
-            testClass01.x = -2;
-            Console.WriteLine($"{testClass01.x},{testClass02.x}");
+            TestClassB testClassB = new TestClassB(456);
+            TestClassA testClass01= new TestClassA(123);
+            testClass01.testClassB= testClassB; 
+            TestClassA testClass02 = new TestClassA(100);
+            testClass02.testClassB= testClassB;
+            testClass02.testClassB = testClass01.testClassB;
+            Console.WriteLine($"{testClass01.x},{testClass01.testClassB.x},{testClass02.x},{testClass02.testClassB.x}");
+            testClassB.x = -2;
+            Console.WriteLine($"{testClass01.x},{testClass01.testClassB.x},{testClass02.x},{testClass02.testClassB.x}");
 
             TestStruct testStruct01 = new TestStruct(456);
             TestStruct testStruct02 = testStruct01;
@@ -18,11 +22,18 @@
 
         }
     }
-    class TestClass
+    class TestClassA
     {
         public int x;
-        public TestClass(int x) { this.x = x;}
+        public TestClassA(int x) { this.x = x;}
+        public TestClassB testClassB;
     }
+    class TestClassB
+    {
+        public int x;
+        public TestClassB(int x) { this.x = x; }
+    }
+
     struct TestStruct
     {
         public int x;
