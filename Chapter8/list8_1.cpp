@@ -10,6 +10,9 @@ class MyClass {
     int getData() {
       return this->data;
     }
+    void setData(int v) {
+        this->data=v;
+    }
 
     // コンストラクタ
     MyClass(int data) {
@@ -30,11 +33,14 @@ int main() {
 
   // obj1をコピーしてobj2を生成する
   MyClass obj2 = obj1;
-  MyClass* obj2 = &obj1;
+  MyClass* obj3 = &obj1;
 
   // メンバ変数の値を表示する
   cout << "obj1のメンバ変数dataの値：" << obj1.getData() << endl;
-  cout << "obj2のメンバ変数dataの値：" << obj2->getData() << endl;
+  obj1.setData(456);
+  cout << "obj1のメンバ変数dataの値：" << obj1.getData() << endl;
+  cout << "obj2のメンバ変数dataの値：" << obj2.getData() << endl;
+  cout << "obj3のメンバ変数dataの値：" << obj3->getData() << endl;
 
   return 0;
 }
